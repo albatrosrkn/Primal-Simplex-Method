@@ -31,10 +31,7 @@ def funct():
     
         for i in range(1 + eqlCount):
             objZtemp.append(M)
-    #değişecek
         c = np.array(objZtemp)*(-1)
-        #print("ZET=",c)
-
 
         constraints = [] #S1-S2
         slackptr = totalvartemp
@@ -70,15 +67,10 @@ def funct():
     
             constraints.append(temp)
      
-    #değişecek
         Constrainmatrix = np.array(constraints)
-        #print("S1+S2=",Constrainmatrix)
-        
-        
-    #değişecek
+       
         SolveMatrix = np.array(SolveValue)
-       # print("Çözüm=",SolveMatrix)
-        #print("Cons",Constrainmatrix)
+
         indexnumber=0
         max=99
         
@@ -110,7 +102,6 @@ def funct():
         #S1iter1
         for i in range(0,totalvariable+totalconstant):
             iterZetMatrix.append(c[i]+((-1)*c[indexnumber]*iterpivmatrix[i]))
-        #print("İterZet",iterZetMatrix)
         
         #S2 iter2
         czmTemp = []
@@ -133,13 +124,8 @@ def funct():
             else:
                 aTemp.append(j)
             a=a+1
-            
-        #print(iternotpivmatrix)
-        #print(czmTemp)
-        
-        #sırada çözümler var,pivot çözüm,zet çözüm,s2,çoklu girişe göre tasarla
         Solvepiv=[]
-        #Pivotun çözüm sonucu
+   
         Solvepiv.append(SolveMatrix[piv2]/pivelement)
         #Zet çözüm
         Zetsolve=c[totalconstant+totalvariable]+(((-1)*c[indexnumber])*Solvepiv[0])
@@ -156,28 +142,16 @@ def funct():
     
         iterZetMatrix.append(Zetsolve)
         czmTemp.append(iterpivmatrix)
-        #•-----------------------
-        #yazılacak yer
+
         cozummatrix=[]
-        #print("other1aa",othersolve)
-        #print(indexnumber)
-        #print(len(othersolve))
+
         flag=0
         for j in range(0,totalconstant):
             if(j==piv2):
                 flag=1
                 cozummatrix.append(Solvepiv[0])
             else:
-                cozummatrix.append(othersolve[j-flag])
-        
-            
-        #print("aaa",cozummatrix)
-        #cozummatrix=othersolve+Solvepiv
-        
-        #print(czmTemp)
-        #print("iter",czmTemp)
-        #print(iterZetMatrix)
-      
+                cozummatrix.append(othersolve[j-flag])      
        
         for i in range(0,totalconstant+totalvariable):
             if iterZetMatrix[i]<0.0:
@@ -189,9 +163,7 @@ def funct():
             print("Optimal Value is",iterZetMatrix[totalconstant+totalvariable])
             print("X cozum",cozummatrix)
                 
-
-        
-
+       
     
     except:
         print("Invalid Input or the problem has an infeasible solution.‎")
@@ -254,11 +226,7 @@ def funct2(c,Constrainmatrix,SolveMatrix,totalvariable,totalconstant,iteration):
         else:
             aTemp.append(j)
         a=a+1
-        
-    #print(iternotpivmatrix)
-    #print(czmTemp)
-    #print(iternotpivmatrix)
-    #sırada çözümler var,pivot çözüm,zet çözüm,s2,çoklu girişe göre tasarla
+
     Solvepiv=[]
     #Pivotun çözüm sonucu
     Solvepiv.append(SolveMatrix[piv2]/pivelement)
